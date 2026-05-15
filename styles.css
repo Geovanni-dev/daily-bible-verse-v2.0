@@ -222,7 +222,7 @@ body.dark::before {
 /* Layout Principal */
 .main-content {
     padding-top: 100px;
-    padding-bottom: 32px;
+    padding-bottom: 12px;
     max-width: 1200px;
     margin: 0 auto;
     padding-left: 24px;
@@ -418,7 +418,6 @@ body.dark::before {
     text-align: center;
     margin-top: 32px;
     padding-top: 24px;
-    border-top: 1px dashed var(--border);
     animation: fadeIn 0.5s ease;
 }
 
@@ -570,12 +569,22 @@ body.dark::before {
     white-space: nowrap;
     /* Impede que o texto quebre linha */
     -webkit-tap-highlight-color: transparent;
+    transition: all 0.2s ease, color 0.1s ease;
 }
 
-/* Efeito de Clique */
 .footer-link:active {
     transform: scale(0.92);
     opacity: 0.7;
+}
+
+.footer-link[href*="github.com"]:active {
+    color: #24292e;
+}
+.footer-link[href*="linkedin.com"]:active {
+    color: #0077b5;
+}
+.footer-link[href*="instagram.com"]:active {
+    color: #e4405f;
 }
 
 /* Libera o texto para quebrar em múltiplas linhas */
@@ -642,6 +651,7 @@ body.dark::before {
         transform: rotate(360deg);
     }
 }
+
 
 /* Bloqueia gestos de zoom e scroll horizontal acidental */
 /* Evita o zoom automático do iOS ao clicar em campos de formulario */
