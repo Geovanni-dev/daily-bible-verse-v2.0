@@ -1,0 +1,667 @@
+        :root {
+            /* TEMA CLARO */
+            --bg-body: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --indigo-50: #eef2ff;
+            --indigo-500: #6366f1;
+            --indigo-600: #4f46e5;
+            --purple-600: #9333ea;
+            --rose-100: #ffe4e6;
+            --rose-500: #e11d48;
+            --white: #ffffff;
+            --border: #f1f5f9;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --card-bg: rgba(255, 255, 255, 0.7);
+        }
+
+        /* TEMA ESCURO */
+        body.dark {
+            --bg-body: #09090b; 
+            --text-main: #fafafa;
+            --text-muted: #a1a1aa;
+            --indigo-50: #27272a; 
+            --indigo-500: #d4d4d8; 
+            --indigo-600: #f4f4f5; 
+            --purple-600: #a1a1aa; 
+            --rose-100: #27272a; 
+            --rose-500: #ef4444; 
+            --white: #18181b; 
+            --border: #27272a; 
+            --nav-bg: rgba(9, 9, 11, 0.95);
+            --card-bg: rgba(24, 24, 27, 0.7);
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        body.dark::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(39, 39, 42, 0.4), transparent 50%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        #particles-js {
+            position: fixed; 
+            width: 100%; 
+            height: 100%; 
+            top: 0; 
+            left: 0; 
+            z-index: -1;
+        }
+     
+        /* Navbar */
+        .navbar {
+            position: fixed; 
+            top: 0; 
+            width: 100%;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 50; 
+            height: 64px; 
+            display: flex; 
+            align-items: center;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
+        }
+
+        .nav-content {
+            max-width: 1200px; 
+            margin: 0 auto; 
+            width: 100%; 
+            padding: 0 24px;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+        }
+
+        /* Grupo Esquerdo da Navbar: Logo, nome etc */
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        }
+
+        .logo-icon {
+            width: 36px; 
+            height: 36px; 
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--text-main), var(--text-muted));
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: var(--bg-body);
+        }
+
+        .brand-text {
+            font-size: 1.25rem; 
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .theme-toggle {
+            background: transparent; 
+            border: 1px solid var(--border);
+            color: var(--text-muted); 
+            border-radius: 50%;
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            transition: all 0.3s; 
+            width: 36px; 
+            height: 36px; 
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover { 
+            background: var(--indigo-50); 
+            color: var(--text-main); 
+        }
+
+        /* Abas - Desktop por padrão */
+        .nav-tabs { 
+            display: flex; 
+            gap: 8px; 
+        }
+
+        .tab-btn {
+            background: none; 
+            border: none; 
+            cursor: pointer;
+            font-size: 0.875rem; 
+            font-weight: 600; 
+            color: var(--text-muted);
+            padding: 8px 12px; 
+            border-radius: 8px; 
+            transition: all 0.2s;
+            display: flex; 
+            align-items: center; 
+            gap: 8px;
+        }
+
+        .tab-btn:hover, .tab-btn.active { 
+            background: var(--indigo-50); 
+            color: var(--text-main); 
+        }
+
+        /* Menu Mobile Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            cursor: pointer;
+            padding: 4px 8px; 
+            border-radius: 8px;
+            transition: all 0.2s;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+       /* Focando apenas nas 3 barrinhas */
+        .mobile-menu-btn svg {
+            width: 40px !important;  
+            height: 30px !important; 
+            stroke-width: 2.5px;     
+            display: block;
+        }
+
+        /* Efeito de clique  */
+        .mobile-menu-btn:active {
+            transform: scale(0.9);
+            opacity: 0.7;
+        }
+        
+        
+
+        /* Layout Principal */
+        .main-content {
+            padding-top: 100px; 
+            padding-bottom: 64px;
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding-left: 24px; 
+            padding-right: 24px;
+            display: flex; 
+            flex-direction: column; 
+            gap: 64px;
+        }
+
+        .view-section { 
+            display: none; 
+        }
+
+        .view-section.active { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 64px; 
+            animation: fadeIn 0.3s ease; 
+        }
+
+        .verse-area {
+            padding: 20px 0;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center;
+        }
+
+        .card-header { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+            margin-bottom: 32px; 
+        }
+
+        .card-header i { 
+            color: #fbbf24; 
+            width: 20px; 
+        }
+
+        .card-header span { 
+            font-size: 0.875rem; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            color: var(--text-muted); 
+        }
+
+        .empty-state { 
+            text-align: center; 
+            padding: 20px 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+
+        .empty-icon-wrap {
+            width: 80px; 
+            height: 80px; 
+            background-color: var(--indigo-50);
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            margin-bottom: 24px; 
+            color: var(--text-main);
+        }
+
+        .empty-state h3 { 
+            font-size: 1.75rem; 
+            color: var(--text-main); 
+            margin-bottom: 8px; 
+        }
+
+        .empty-state p { 
+            color: var(--text-muted); 
+            margin-bottom: 32px; 
+            font-size: 1.125rem; 
+        }
+
+        .generate-btn {
+            background-color: var(--text-main); 
+            color: var(--bg-body); 
+            border: none;
+            padding: 16px 36px; 
+            border-radius: 9999px; 
+            font-size: 1.125rem; 
+            font-weight: 700;
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            transition: all 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+
+        .generate-btn:hover { 
+            transform: translateY(-3px); 
+            opacity: 0.9; 
+        }
+
+        .generate-btn:disabled { 
+            opacity: 0.7; 
+            cursor: not-allowed; 
+            transform: none; 
+            box-shadow: none; 
+        }
+
+        /* Versículo Gerado*/
+        .message-container { 
+            display: none; 
+            width: 100%; 
+            max-width: 900px; 
+            margin: 0 auto; 
+        }
+
+        .message-container.show { 
+            display: block; 
+            animation: fadeIn 0.7s ease-out forwards; 
+        }
+
+        .verse-text { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            color: var(--text-main); 
+            line-height: 1.3; 
+            margin-bottom: 32px; 
+        }
+        
+        .verse-footer { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 24px;
+            margin-top: 40px; 
+            padding-top: 32px; 
+            border-top: 1px solid var(--border);
+        }
+
+        .verse-ref { 
+            font-size: 1.25rem; 
+            font-weight: 600; 
+            color: var(--text-muted); 
+        }
+
+        .action-buttons { 
+            display: flex; 
+            gap: 12px; 
+        }
+
+        .icon-btn {
+            background: var(--white); 
+            color: var(--text-muted); 
+            border: 1px solid var(--border);
+            border-radius: 50%; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            cursor: pointer; 
+            transition: all 0.3s; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            width: 44px; 
+            height: 44px; 
+            flex-shrink: 0;
+            padding: 0;
+        }
+
+.icon-btn svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+.icon-btn:hover {
+    background: var(--indigo-50);
+    color: var(--text-main);
+    transform: scale(1.05);
+}
+
+.icon-btn.liked {
+    background: var(--indigo-50);
+    color: var(white);
+    border-color: transparent;
+}
+
+.icon-btn.liked svg {
+    fill: currentColor;
+}
+
+.cooldown-container {
+    display: none;
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px dashed var(--border);
+    animation: fadeIn 0.5s ease;
+}
+
+.cooldown-msg {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Listas (Histórico e Salvos) */
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.history-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.25rem;
+    color: var(--text-main);
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.history-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(8px);
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.4s ease;
+    
+    /* ADIÇÕES PARA NÃO CORTAR */
+    height: auto !important; 
+    min-height: min-content;
+}
+
+.history-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hist-date {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* Versão AGRESSIVA para `.hist-text` - Substitua a sua por esta */
+.hist-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; /* Fonte um pouco menor pra acomodar textos longos */
+    color: var(--text-main);
+    line-height: 1.6; /* Aumentei um pouco o espaçamento pra leitura ficar melhor */
+    margin: 16px 0; /* Espaço em cima e embaixo do texto */
+
+    /* --- O "PULP FICTION" DO CSS PARA NUNCA MAIS CORTAR --- */
+    
+    /* 1. Força o texto a pular de linha (Ganha do white-space: nowrap) */
+    white-space: normal !important; 
+
+    /* 2. Mata os 3 pontinhos '...' automáticos */
+    text-overflow: clip !important; 
+
+    /* 3. Garante que o container exiba o conteúdo vazado se necessário */
+    overflow: visible !important; 
+
+    /* 4. Força a quebra de palavras gigantescas (tipo links) para não explodir o layout */
+    word-break: break-word !important; 
+    overflow-wrap: break-word !important;
+
+    /* 5. Remove limitações de display antigas */
+    display: block !important;
+}
+
+.hist-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.hist-ref {
+    background: var(--indigo-50);
+    color: var(--text-main);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.empty-list {
+    background: var(--card-bg);
+    border: 1px dashed var(--text-muted);
+    border-radius: 16px;
+    padding: 48px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.125rem;
+}
+
+/* ======== FOOTER EM LINHA ======== */
+.footer {
+    margin-top: 70px;
+    padding: 20px; 
+    display: flex; 
+    flex-direction: column; /* Copy em cima, Links embaixo */
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-links {
+    display: flex; 
+    flex-direction: row; /* FORÇA FICAR LADO A LADO */
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Espaço entre cada rede social */
+}
+
+.footer-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+    white-space: nowrap; /* Impede que o texto quebre linha */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Efeito de Clique */
+.footer-link:active {
+    transform: scale(0.92);
+    opacity: 0.7;
+}
+
+/* Libera o texto para quebrar em múltiplas linhas */
+.hist-text {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+    max-height: none !important;
+    line-clamp: unset !important;
+    -webkit-line-clamp: unset !important;
+}
+
+/* Remove limites de altura nos cards */
+.history-card {
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+/* Remove overflow oculto nos containers pais */
+.history-list {
+    overflow: visible !important;
+}
+
+/* Cores no Hover (Desktop) */
+@media (hover: hover) {
+    .footer-link[href*="github.com"]:hover { color: #24292e; }
+    .footer-link[href*="linkedin.com"]:hover { color: #0077b5; }
+    .footer-link[href*="instagram.com"]:hover { color: #e4405f; }
+    
+    .footer-link:hover {
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Bloqueia gestos de zoom e scroll horizontal acidental */
+html, body {
+    touch-action: pan-x pan-y; /* Permite scroll mas evita o pinch-zoom em navegadores modernos */
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%; /* Evita que o iPhone aumente o texto sozinho ao girar a tela */
+}
+
+/* Evita o zoom automático do iOS ao clicar em campos de formulario */
+input, select, textarea {
+    font-size: 16px !important; /* O iOS da zoom automatico se a fonte for menor que 16px */
+}
+
+/* Desativa a seleção de texto em botões e ícones  */
+.icon-btn, button {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+        /* ======== RESPONSIVIDADE  */
+        @media (max-width: 768px) {
+            .nav-tabs {
+                position: absolute;
+                top: 64px;
+                left: 0;
+                width: 100%;
+                background-color: var(--nav-bg);
+                backdrop-filter: blur(12px);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                padding: 16px 24px;
+                gap: 12px;
+                display: none; /* Escondido por padrão no mobile */
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-tabs.open {
+                display: flex; /* Exibe quando a classe open é adicionada */
+            }
+
+            .mobile-menu-btn {
+                display: block; /* Exibe o ícone de hambúrguer */
+                margin-right: -25px;
+            }
+
+            .tab-btn {
+                width: 100%;
+                justify-content: flex-start;
+                padding: 12px;
+                font-size: 1rem;
+            }
+
+            
+            .verse-text { font-size: 2rem; }
+            .verse-footer { flex-direction: column; gap: 16px; }
+            .history-card { padding: 20px; }
+            .hist-text { font-size: 1.25rem; }
+        }
