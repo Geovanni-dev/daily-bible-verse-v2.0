@@ -300,7 +300,7 @@ async function shareVerse(verseObj) {
         <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
             <div style="width: 100px; height: 4px; background: #6366f1; border-radius: 2px; opacity: 0.4;"></div>
             <div style="font-size: 32px; font-weight: 600; color: ${isDark ? '#52525b' : '#a1a1aa'}; letter-spacing: 3px; text-transform: uppercase;">
-                Compartilhe a palavra do Senhor
+                Compartilhe a palavra do nosso Senhor Jesus Cristo!
             </div>
         </div>
     `;
@@ -327,7 +327,7 @@ async function shareVerse(verseObj) {
 
         // tenta compartilhar nativamente no mobile ou baixa a imagem
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            await navigator.share({ files: [file], title: 'Versículo Diário' });
+            await navigator.share({ files: [file], title: 'Versículo do dia' });
         } else {
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
