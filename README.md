@@ -13,7 +13,7 @@
 
 ## 🚀 Acesse o App
 
-**Veja o projeto rodando na Vercel:** [Acessar Luz Diária](https://luz-diaria-weld.vercel.app/)
+**Veja o projeto rodando na Vercel:** [Acessar Luz Diária v2.0](https://luz-diaria-weld.vercel.app/)
 
 ---
 
@@ -40,6 +40,13 @@
 ## 📈 Sobre a Evolução
 
 Decidi recriar o site original do zero para aplicar conceitos avançados que aprendi. O [repositório antigo](https://github.com/Geovanni-dev/daily-bible-verse) foi mantido como um registro histórico do meu primeiro contato com código, enquanto esta versão v2.0 mostra meu amadurecimento técnico.
+
+## ⏳ Linha do Tempo
+
+- **Novembro de 2024:** Início do desenvolvimento da v1.0 (primeiro projeto de estudos).
+- **Março de 2025:** Primeiro deploy oficial e lançamento da versão inicial.
+- **Novembro de 2025:** Repositório reiniciado e estabilizado no GitHub.
+- **Maio de 2026:** Lançamento da **Versão 2.0** com reescrita total da arquitetura.
 
 ---
 
