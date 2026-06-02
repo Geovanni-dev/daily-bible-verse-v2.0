@@ -1,4 +1,3 @@
-
 lucide.createIcons(); // cria os ícones do lucide 
 
 let messages = [];// guarda todos os versiculo do JSON
@@ -100,13 +99,12 @@ function iniciarParticulas() {
 
 // ===============LÓGICA DO VERSICULO DIARIO 
 function verificarCooldown() {
-    const lastClick = localStorage.getItem("lastClickTime");
+    const lastDate = localStorage.getItem("lastClickDate");// data salva da ultima vez
     const savedVerse = localStorage.getItem("savedDailyVerse");
-    const cooldownTime = 24 * 60 * 60 * 1000; // Tempo de 24 horas
-    const now = new Date().getTime();
+    const hoje = new Date().toLocaleDateString('pt-BR'); // pega dia/mes/ano de hoje
 
-    // se já pegou um versículo hoje e ainda não passou o cooldown, exibe ele direto
-    if (lastClick && savedVerse && (now - lastClick < cooldownTime)) {
+    // se a data salva for igual a data de hoje, mostra o versiculo
+    if (lastDate === hoje && savedVerse) {
         currentVerseData = JSON.parse(savedVerse);
         mostrarVersiculoNaTela(currentVerseData);
         atualizarBotaoLikePrincipal();
@@ -125,10 +123,10 @@ function gerarVersiculo() {
     lucide.createIcons();
 
     setTimeout(() => {
-        const now = new Date().getTime();
-        localStorage.setItem("lastClickTime", now);
+        const hoje = new Date().toLocaleDateString('pt-BR'); // pega data atual
+        localStorage.setItem("lastClickDate", hoje);// salva a data atual
 
-        // evita repetir versículos recentes - usa um histórico de ids
+        // evita repetir versículos recentes usa um histórico de ids
         let usedIds = JSON.parse(localStorage.getItem("usedVersesIds")) || [];
         let availableVerses = messages.filter(msg => !usedIds.includes(msg.id));
 
@@ -162,7 +160,7 @@ function mostrarVersiculoNaTela(verseData) {
     document.getElementById('message-container').classList.add('show');
 }
 
-// ========================= LIKES - SALVAR VERSÍCULOS 
+// ===================== LIKES E SALVAR VERSÍCULOS 
 function getSalvos() { return JSON.parse(localStorage.getItem('savedVersesList')) || []; }
 
 function toggleLikeCurrent() {
@@ -339,4 +337,10 @@ async function shareVerse(verseObj) {
     } finally {
         document.body.removeChild(card); // limpa o elemento criado
     }
-}
+};
+
+// ================== VARIÁVEIS PARA EXIBIR ANO ATUAL NO FOOTER 
+const yearSpan = document.getElementById('year');
+if (yearSpan) {
+    yearSpan.innerHTML = new Date().getFullYear();
+};
